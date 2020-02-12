@@ -7,6 +7,7 @@ import java.io.*;
  */
 public class FileOutput {
 
+
     Writer out = null;
     private String fileName;
 
