@@ -14,16 +14,18 @@ public class FileOutput {
         this.fileName = fileName;
         try {
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)));
-        } catch (FileNotFoundException e) {
-            System.out.println("File Open Error: " + fileName + " " + e);
+        }
+        catch(FileNotFoundException e) {
+            System.out.println("File Open Error: " + fileName + " "  + e);
         }
     }
 
     public void fileWrite(String line) {
         try {
-            out.write(line + "\n");
-        } catch (Exception e) {
-            System.out.println("File Write Error: " + fileName + " " + e);
+            out.write(line+"\n");
+        }
+        catch(Exception e) {
+            System.out.println("File Write Error: " + fileName + " "  + e);
         }
     }
 

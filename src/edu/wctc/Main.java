@@ -6,8 +6,13 @@ import java.util.Map;
 public class Main {
 
     private final static FileInput indata = new FileInput("the_book.csv");
-    private final static Map<String, Integer> map = new HashMap<>();
+    private final static Map<String, Integer> map = new HashMap<String, Integer>();
 
+
+
+    public static void main(String[] args) {
+        new Main();
+    }
 
     public Main() {
         String line;
@@ -15,7 +20,7 @@ public class Main {
 
         while ((line = indata.fileReadLine()) != null) {
             // Remove anything that's not a letter or space
-            line = line.replaceAll("[^a-zA-Z ]", "")
+            line = line.replaceAll("[^a-zA-Z ]","")
                     .toLowerCase().trim();
 
             // Don't process lines with no characters
@@ -31,22 +36,42 @@ public class Main {
                 // This word isn't yet a key, init count to 1
                 if (!map.containsKey(word)) {
                     map.put(word, 1);
-                } else {
+                }
+                else {
                     // Increment count using word as key
                     map.put(word, map.get(word) + 1);
                 }
 
             }
+
+            // Loop over entries in the map, getting each key/value pair
+//            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+//                System.out.println(entry.getKey() + " " + entry.getValue());
         }
 
-        // Loop over entries in the map, getting each key/value pair
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+        //
+        int max = 0;
+        for(Map.Entry<String, Integer> entry: map.entrySet()) {
+
+
+            if(max <= entry.getValue()){
+                max = entry.getValue();
+            }
+
+            if(entry.getValue() == max){
+
+            }
+            if(entry.getValue() == 1){
+                System.out.println("The word '" + entry.getKey() + "'" + " was used only once.");
+            }
         }
-    }
+        for(Map.Entry<String, Integer> entry: map.entrySet()) {
+            if(entry.getValue() == max){
+                System.out.println("The word '" + entry.getKey() + "'" + " was used the most. (" + entry.getValue() + " times.)");
+            }
+        }
 
-    public static void main(String[] args) {
-        new Main();
+        //System.out.println(entry.getKey() + " " + entry.getValue());
     }
-
 }
+
